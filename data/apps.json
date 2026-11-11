@@ -1,0 +1,40 @@
+{
+  "apps": [
+    {
+      "id": "soni-words",
+      "name": "SONI WORDS",
+      "category": "Омӯзиш",
+      "icon": "📚",
+      "description": "Лоиҳаи омӯзиши луғат. Маълумот ва версияи APK баъд аз нашр илова мешавад.",
+      "version": "Дар омодагӣ",
+      "size": "—",
+      "developer": "SoniOfficial",
+      "downloadUrl": "",
+      "tags": "луғат забон омӯзиш"
+    },
+    {
+      "id": "soni-english-world",
+      "name": "SONI ENGLISH WORLD",
+      "category": "Омӯзиш",
+      "icon": "🌍",
+      "description": "Лоиҳаи омӯзиши забони англисӣ. Пайванди зеркашӣ баъд аз нашр илова мешавад.",
+      "version": "Дар омодагӣ",
+      "size": "—",
+      "developer": "SoniOfficial",
+      "downloadUrl": "",
+      "tags": "англисӣ бозӣ омӯзиш"
+    },
+    {
+      "id": "soni-tools",
+      "name": "SONI TOOLS",
+      "category": "Асбобҳо",
+      "icon": "⚙️",
+      "description": "Ҷой барои барномаҳои муфиди ояндаи SONI.",
+      "version": "Дар омодагӣ",
+      "size": "—",
+      "developer": "SoniOfficial",
+      "downloadUrl": "",
+      "tags": "tools utility асбобҳо"
+    }
+  ]
+}
