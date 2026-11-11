@@ -3,102 +3,80 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090909">
-  <meta name="description" content="SONI STORE — мағозаи рақамии барномаҳо ва бозиҳои SoniOfficial.">
-  <title>SONI STORE — Мағозаи рақамии SONI</title>
+  <meta name="theme-color" content="#0b0b0d">
+  <title>SONI STORE — Барномаҳои рақамӣ</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
   <header class="topbar">
     <a class="brand" href="#" aria-label="SONI STORE">
-      <span class="brand-mark">S</span>
-      <span><strong>SONI STORE</strong><small>МАГОЗАИ РАҚАМИИ SONI</small></span>
+      <img src="assets/logo.svg" alt="" width="42" height="42">
+      <span>SONI <b>STORE</b><small>YOUR DIGITAL WORLD</small></span>
     </a>
-    <nav class="desktop-nav" aria-label="Навигатсияи асосӣ">
-      <a href="#apps">Барномаҳо</a><a href="#categories">Категорияҳо</a><a href="#request">Дархост</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Кушодани меню">☰</button>
+    <nav id="nav">
+      <a class="active" href="#home">Асосӣ</a>
+      <a href="#apps">Барномаҳо</a>
+      <a href="#request">Дархост</a>
+      <a href="#about">Дар бораи мо</a>
     </nav>
-    <a class="github-link" href="https://github.com/SoniOfficial/soni-store" target="_blank" rel="noopener"> <span>⌘</span> GitHub</a>
   </header>
 
-  <main>
+  <main id="home">
     <section class="hero">
       <div class="hero-copy">
-        <div class="eyebrow"><span class="pulse"></span> ҶАҲОНИ БАРНОМАҲО ДАР ЯК ҶО</div>
-        <h1>Ғояҳои нав.<br><em>Имкониятҳои беохир.</em></h1>
-        <p>Барномаҳои муфидро пайдо кун, зеркашӣ намо ё идеяи барномаи дилхоҳатро ба мо пешниҳод кун.</p>
-        <div class="hero-actions">
-          <a class="btn btn-gold" href="#apps">Кашфи барномаҳо <span>↗</span></a>
-          <a class="btn btn-ghost" href="#request">Дархости барнома</a>
-        </div>
-        <div class="hero-meta"><span>✦ Лоиҳаҳои SoniOfficial</span><span>🇹🇯 Аз Тоҷикистон</span></div>
+        <span class="eyebrow">WELCOME TO YOUR DIGITAL WORLD</span>
+        <h1>Ҳамаи барномаҳоят<br><em>дар як ҷо.</em></h1>
+        <p>Барномаҳои SONI-ро кашф кун, маълумоташонро бин ва бо як пахш зеркашӣ намо.</p>
+        <a class="primary-btn" href="#apps">Дидани барномаҳо <span>↗</span></a>
       </div>
-      <div class="hero-art" aria-label="Нишони SONI STORE">
-        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
-        <div class="hero-crown">♛</div><div class="hero-s">S</div>
-        <div class="hero-art-caption">SONI <b>STORE</b><small>DISCOVER • DOWNLOAD • CREATE</small></div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="store-mark">S<span>✦</span></div>
+        <div class="float-card card-a">✦ <b>APPS</b></div>
+        <div class="float-card card-b">⬇ <b>DOWNLOAD</b></div>
       </div>
     </section>
 
-    <section class="search-panel" aria-label="Ҷустуҷӯи барнома">
-      <div class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Номи барномаро ҷустуҷӯ кун..." autocomplete="off"><kbd>/</kbd></div>
-      <span class="search-hint">Ҷустуҷӯи зуд</span>
+    <section class="stats">
+      <div><strong id="appCount">0</strong><span>Барнома</span></div>
+      <div><strong>24/7</strong><span>Дастрасӣ</span></div>
+      <div><strong>100%</strong><span>Дунёи SONI</span></div>
     </section>
 
-    <section id="categories" class="section">
-      <div class="section-heading"><div><span class="eyebrow">ИНТИХОБИ ТУ</span><h2>Категорияҳо</h2></div></div>
-      <div id="categoryList" class="category-list">
-        <button class="category-chip active" data-category="Ҳама">✦ Ҳама</button>
-        <button class="category-chip" data-category="Барномаҳо">▣ Барномаҳо</button>
-        <button class="category-chip" data-category="Бозиҳо">🎮 Бозиҳо</button>
-        <button class="category-chip" data-category="Омӯзиш">▤ Омӯзиш</button>
-        <button class="category-chip" data-category="Асбобҳо">⚙ Асбобҳо</button>
-      </div>
-    </section>
-
-    <section id="apps" class="section">
+    <section class="section" id="apps">
       <div class="section-heading">
-        <div><span class="eyebrow">КИТОБХОНАИ РАҚАМӢ</span><h2>Барномаҳо <span class="gold-dot">.</span></h2></div>
-        <span id="appCount" class="muted-count">0 барнома</span>
+        <div><span class="eyebrow">EXPLORE</span><h2>Барномаҳо</h2></div>
+        <span class="section-note">Каталоги расмии SONI</span>
       </div>
-      <div id="appGrid" class="app-grid" aria-live="polite"></div>
-      <div id="emptyState" class="empty-state hidden"><div class="empty-icon">⌕</div><h3>Ҳоло чизе ёфт нашуд</h3><p>Калимаи дигарро ҷустуҷӯ кун ё категорияро иваз намо.</p></div>
+      <div class="toolbar">
+        <label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="Ҷустуҷӯи барнома..."></label>
+        <div class="filters" id="filters">
+          <button class="filter active" data-category="Ҳама">Ҳама</button>
+          <button class="filter" data-category="Омӯзиш">Омӯзиш</button>
+          <button class="filter" data-category="Асбобҳо">Асбобҳо</button>
+          <button class="filter" data-category="Бозиҳо">Бозиҳо</button>
+          <button class="filter" data-category="Дӯстдошта">♥</button>
+        </div>
+      </div>
+      <div class="app-grid" id="appGrid"><div class="loading">Каталог бор шуда истодааст...</div></div>
     </section>
 
-    <section class="request-banner" id="request">
-      <div class="request-symbol">✧</div>
-      <div class="request-copy"><span class="eyebrow">ИДЕЯ ДОРӢ?</span><h2>Барномаи дилхоҳатро пешниҳод кун.</h2><p>Номи барнома ва хусусиятҳои лозимаро навис. Дархост ҳамчун GitHub Issue ба соҳибони SONI STORE мерасад.</p></div>
-      <a class="btn btn-gold" href="#requestForm">Фиристодани дархост <span>↗</span></a>
+    <section class="request-section" id="request">
+      <div><span class="eyebrow">YOUR IDEA MATTERS</span><h2>Барномаи нав мехоҳӣ?</h2><p>Пешниҳоди худро фирист. Мо идеяатро мебинем ва баррасӣ мекунем.</p></div>
+      <a class="primary-btn" id="requestLink" href="https://github.com/SoniOfficial/soni-store/issues/new/choose" target="_blank" rel="noopener">Фиристодани дархост ↗</a>
     </section>
 
-    <section class="section request-section">
-      <div class="section-heading"><div><span class="eyebrow">БАРОИ ИДЕЯҲОИ ТУ</span><h2>Дархости барномаи нав</h2></div></div>
-      <form id="requestForm" class="request-form">
-        <label>Номи барнома<input id="requestName" required maxlength="90" placeholder="Масалан: Барномаи омӯзиши забон"></label>
-        <label>Категория<select id="requestCategory"><option>Барномаҳо</option><option>Бозиҳо</option><option>Омӯзиш</option><option>Асбобҳо</option><option>Дигар</option></select></label>
-        <label class="full">Чӣ гуна барнома мехоҳӣ?<textarea id="requestDetails" required maxlength="1500" rows="4" placeholder="Функсияҳо ва имкониятҳои лозимиро шарҳ деҳ..."></textarea></label>
-        <label class="full">Номи GitHub-и ту (ихтиёрӣ)<input id="requestAuthor" maxlength="39" placeholder="username"></label>
-        <div class="form-note full">Барои фиристодани дархост ба ҳисоби GitHub ворид шудан лозим аст. Маълумоти форма ба GitHub Issues мегузарад.</div>
-        <button class="btn btn-gold full" type="submit">Идома ба GitHub <span>↗</span></button>
-        <p id="formMessage" class="form-message full" role="status"></p>
-      </form>
-    </section>
-
-    <section class="status-card">
-      <div><span class="eyebrow">ПАЙГИРИИ ДАРХОСТ</span><h2>Ҳолати дархостатро бин</h2><p>Рақами Issue-и GitHub-ро ворид кун, то ҳолати онро бинӣ.</p></div>
-      <form id="statusForm" class="status-form"><input id="issueNumber" type="number" min="1" required placeholder="Масалан: 12"><button class="btn btn-ghost" type="submit">Санҷидан</button></form>
-      <div id="statusResult" class="status-result" aria-live="polite"></div>
+    <section class="section about" id="about">
+      <span class="eyebrow">ABOUT SONI STORE</span><h2>Мағозаи рақамии ту.</h2>
+      <p>SONI STORE макони ягона барои шиносоӣ ва зеркашии барномаҳои лоиҳаи SONI мебошад. Версияҳои нав мунтазам илова мешаванд.</p>
     </section>
   </main>
 
-  <footer class="footer">
-    <a class="brand footer-brand" href="#"><span class="brand-mark">S</span><span><strong>SONI STORE</strong><small>БО МУҲАББАТ АЗ ТОҶИКИСТОН</small></span></a>
-    <p>© <span id="year"></span> SoniOfficial. Ҳамаи ҳуқуқҳо ҳифз шудаанд.</p>
-    <a href="https://github.com/SoniOfficial" target="_blank" rel="noopener">@SoniOfficial ↗</a>
-  </footer>
+  <footer><a class="brand small-brand" href="#"><img src="assets/logo.svg" alt="" width="32" height="32"><span>SONI <b>STORE</b></span></a><span>© <span id="year"></span> SONI STORE. Ҳамаи ҳуқуқҳо ҳифз шудаанд.</span><a href="https://github.com/SoniOfficial" target="_blank" rel="noopener">GitHub ↗</a></footer>
 
-  <dialog id="appDialog" class="app-dialog"><button class="dialog-close" id="dialogClose" aria-label="Пӯшидан">×</button><div id="dialogContent"></div></dialog>
+  <dialog id="appDialog" class="app-dialog"><button class="close-dialog" id="closeDialog" aria-label="Пӯшидан">×</button><div id="dialogContent"></div></dialog>
   <script src="app.js"></script>
 </body>
 </html>

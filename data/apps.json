@@ -5,36 +5,39 @@
       "name": "SONI WORDS",
       "category": "Омӯзиш",
       "icon": "📚",
-      "description": "Лоиҳаи омӯзиши луғат. Маълумот ва версияи APK баъд аз нашр илова мешавад.",
-      "version": "Дар омодагӣ",
+      "description": "Барномаи омӯзиши луғат ва калимаҳо. Забонҳоро омӯз ва дониши худро беҳтар кун.",
+      "version": "1.0",
       "size": "—",
+      "updated": "2026",
       "developer": "SoniOfficial",
       "downloadUrl": "",
-      "tags": "луғат забон омӯзиш"
+      "screenshots": []
     },
     {
       "id": "soni-english-world",
       "name": "SONI ENGLISH WORLD",
       "category": "Омӯзиш",
       "icon": "🌍",
-      "description": "Лоиҳаи омӯзиши забони англисӣ. Пайванди зеркашӣ баъд аз нашр илова мешавад.",
-      "version": "Дар омодагӣ",
+      "description": "Ҷаҳони омӯзиши забони англисӣ бо дарсҳо ва машқҳои шавқовар.",
+      "version": "1.0",
       "size": "—",
+      "updated": "2026",
       "developer": "SoniOfficial",
       "downloadUrl": "",
-      "tags": "англисӣ бозӣ омӯзиш"
+      "screenshots": []
     },
     {
       "id": "soni-tools",
       "name": "SONI TOOLS",
       "category": "Асбобҳо",
-      "icon": "⚙️",
-      "description": "Ҷой барои барномаҳои муфиди ояндаи SONI.",
+      "icon": "🛠️",
+      "description": "Маҷмӯи асбобҳои муфид барои истифодаи ҳаррӯза.",
       "version": "Дар омодагӣ",
       "size": "—",
+      "updated": "2026",
       "developer": "SoniOfficial",
       "downloadUrl": "",
-      "tags": "tools utility асбобҳо"
+      "screenshots": []
     }
   ]
 }

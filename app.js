@@ -1,99 +1,58 @@
-const OWNER = "SoniOfficial";
-const REPO = "soni-store";
-const API_BASE = `https://api.github.com/repos/${OWNER}/${REPO}`;
-let allApps = [];
+const grid = document.getElementById("appGrid");
+const searchInput = document.getElementById("searchInput");
+const filters = document.getElementById("filters");
+const dialog = document.getElementById("appDialog");
+const dialogContent = document.getElementById("dialogContent");
+let apps = [];
 let activeCategory = "Ҳама";
+let favorites = JSON.parse(localStorage.getItem("soniStoreFavorites") || "[]");
 
-const $ = (id) => document.getElementById(id);
-const escapeHtml = (value = "") => String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("menuBtn").addEventListener("click", () => document.getElementById("nav").classList.toggle("open"));
+document.getElementById("closeDialog").addEventListener("click", () => dialog.close());
+dialog.addEventListener("click", e => { if (e.target === dialog) dialog.close(); });
 
-async function loadApps() {
-  const grid = $("appGrid");
-  try {
-    const response = await fetch("data/apps.json", {cache:"no-store"});
-    if (!response.ok) throw new Error("Файли каталог дастрас нест");
-    const data = await response.json();
-    allApps = Array.isArray(data.apps) ? data.apps : [];
-    renderApps();
-  } catch (error) {
-    grid.innerHTML = `<div class="empty-state"><h3>Каталог бор нашуд</h3><p>${escapeHtml(error.message)}</p></div>`;
-  }
-}
+fetch("data/apps.json").then(r => { if (!r.ok) throw new Error("Catalog not found"); return r.json(); })
+  .then(data => { apps = data.apps || []; document.getElementById("appCount").textContent = apps.length; render(); })
+  .catch(() => { grid.innerHTML = '<div class="empty">Каталог бор нашуд. Файли data/apps.json-ро санҷед.</div>'; });
 
-function renderApps() {
-  const query = $("searchInput").value.trim().toLocaleLowerCase();
-  const filtered = allApps.filter(app => {
-    const matchesCategory = activeCategory === "Ҳама" || app.category === activeCategory;
-    const haystack = `${app.name} ${app.description} ${app.category} ${app.tags || ""}`.toLocaleLowerCase();
-    return matchesCategory && haystack.includes(query);
+function render() {
+  const term = searchInput.value.trim().toLowerCase();
+  const filtered = apps.filter(app => {
+    const matchesTerm = [app.name, app.description, app.category].join(" ").toLowerCase().includes(term);
+    const matchesCategory = activeCategory === "Ҳама" || (activeCategory === "Дӯстдошта" ? favorites.includes(app.id) : app.category === activeCategory);
+    return matchesTerm && matchesCategory;
   });
-  $("appCount").textContent = `${filtered.length} барнома`;
-  $("emptyState").classList.toggle("hidden", filtered.length > 0);
-  $("appGrid").innerHTML = filtered.map((app, index) => `
-    <article class="app-card" tabindex="0" role="button" data-index="${allApps.indexOf(app)}" aria-label="Маълумоти ${escapeHtml(app.name)}">
-      <div class="app-card-top"><div class="app-icon">${escapeHtml(app.icon || "✦")}</div><span class="app-tag">${escapeHtml(app.category || "Барномаҳо")}</span></div>
-      <h3>${escapeHtml(app.name)}</h3><p>${escapeHtml(app.description || "")}</p>
-      <div class="app-card-bottom"><span>${escapeHtml(app.version || "Версия: —")} · ${escapeHtml(app.size || "Ҳаҷм: —")}</span><b>${app.downloadUrl ? "↓ Зеркашӣ" : "Ба наздикӣ"}</b></div>
+  if (!filtered.length) { grid.innerHTML = '<div class="empty">Барнома ёфт нашуд.</div>'; return; }
+  grid.innerHTML = filtered.map(app => `
+    <article class="app-card">
+      <div class="app-top"><div class="app-icon">${escapeHtml(app.icon || "✦")}</div><div><h3>${escapeHtml(app.name)}</h3><span class="category">${escapeHtml(app.category || "Дигар")}</span></div></div>
+      <p>${escapeHtml(app.description || "")}</p>
+      <div class="card-meta"><span>Версия: ${escapeHtml(app.version || "—")}</span><span>${escapeHtml(app.size || "—")}</span></div>
+      <div class="card-actions">
+        <button onclick="showDetails('${safeId(app.id)}')">Маълумот</button>
+        ${app.downloadUrl ? `<a class="download" href="${escapeAttr(app.downloadUrl)}" target="_blank" rel="noopener">⬇ Зеркашӣ</a>` : '<button disabled title="Ҳоло дастрас нест">Омода мешавад</button>'}
+        <button class="favorite ${favorites.includes(app.id) ? "saved" : ""}" aria-label="Дӯстдошта" onclick="toggleFavorite('${safeId(app.id)}')">${favorites.includes(app.id) ? "♥" : "♡"}</button>
+      </div>
     </article>`).join("");
-  document.querySelectorAll(".app-card").forEach(card => {
-    const open = () => showApp(Number(card.dataset.index));
-    card.addEventListener("click", open);
-    card.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
-  });
 }
-
-function showApp(index) {
-  const app = allApps[index];
-  if (!app) return;
-  const download = app.downloadUrl
-    ? `<a class="btn btn-gold dialog-download" href="${escapeHtml(app.downloadUrl)}" target="_blank" rel="noopener">↓ Зеркашии APK</a>`
-    : `<span class="status-pill">Ин барнома ҳоло нашр нашудааст</span>`;
-  $("dialogContent").innerHTML = `<div class="dialog-icon">${escapeHtml(app.icon || "✦")}</div><span class="eyebrow">${escapeHtml(app.category || "Барномаҳо")}</span><h2>${escapeHtml(app.name)}</h2><p class="dialog-meta">${escapeHtml(app.description || "")}</p><p class="dialog-meta">Версия: ${escapeHtml(app.version || "—")}<br>Ҳаҷм: ${escapeHtml(app.size || "—")}<br>Таҳиягар: ${escapeHtml(app.developer || OWNER)}</p>${download}`;
-  $("appDialog").showModal();
+function showDetails(id) {
+  const app = apps.find(a => a.id === id); if (!app) return;
+  const shots = (app.screenshots || []).map(src => `<img src="${escapeAttr(src)}" alt="Скриншоти ${escapeAttr(app.name)}">`).join("");
+  dialogContent.innerHTML = `<div class="dialog-icon">${escapeHtml(app.icon || "✦")}</div><h2>${escapeHtml(app.name)}</h2><p>${escapeHtml(app.description || "")}</p><div class="dialog-meta"><span>Категория: ${escapeHtml(app.category || "—")}</span><span>Версия: ${escapeHtml(app.version || "—")}</span><span>Ҳаҷм: ${escapeHtml(app.size || "—")}</span><span>Навсозӣ: ${escapeHtml(app.updated || "—")}</span><span>Таҳиягар: ${escapeHtml(app.developer || "SONI")}</span></div>${shots ? `<div class="screenshots">${shots}</div>` : ""}<p>${app.downloadUrl ? `<a class="primary-btn" href="${escapeAttr(app.downloadUrl)}" target="_blank" rel="noopener">⬇ Зеркашии барнома</a>` : '<span class="category">Ин барнома ҳоло дар омодагӣ аст.</span>'}</p>`;
+  dialog.showModal();
 }
-
-document.querySelectorAll(".category-chip").forEach(button => button.addEventListener("click", () => {
-  document.querySelectorAll(".category-chip").forEach(item => item.classList.remove("active"));
-  button.classList.add("active");
+function toggleFavorite(id) {
+  favorites = favorites.includes(id) ? favorites.filter(x => x !== id) : [...favorites, id];
+  localStorage.setItem("soniStoreFavorites", JSON.stringify(favorites)); render();
+}
+function safeId(value) { return String(value).replace(/[^a-zA-Z0-9_-]/g, ""); }
+function escapeHtml(value) { return String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function escapeAttr(value) { return escapeHtml(value); }
+searchInput.addEventListener("input", render);
+filters.addEventListener("click", e => {
+  const button = e.target.closest("button[data-category]"); if (!button) return;
   activeCategory = button.dataset.category;
-  renderApps();
-}));
-$("searchInput").addEventListener("input", renderApps);
-document.addEventListener("keydown", e => {
-  if (e.key === "/" && !["INPUT","TEXTAREA"].includes(document.activeElement.tagName)) { e.preventDefault(); $("searchInput").focus(); }
+  filters.querySelectorAll("button").forEach(b => b.classList.toggle("active", b === button)); render();
 });
-$("dialogClose").addEventListener("click", () => $("appDialog").close());
-$("appDialog").addEventListener("click", e => { if (e.target === $("appDialog")) $("appDialog").close(); });
-
-$("requestForm").addEventListener("submit", e => {
-  e.preventDefault();
-  const name = $("requestName").value.trim();
-  const category = $("requestCategory").value;
-  const details = $("requestDetails").value.trim();
-  const author = $("requestAuthor").value.trim();
-  const title = `[Дархости барнома] ${name}`;
-  const body = `## Маълумоти дархост\n- **Ном:** ${name}\n- **Категория:** ${category}\n- **GitHub:** ${author ? "@" + author : "Номаълум"}\n\n## Тавсиф ва хусусиятҳои лозима\n${details}\n\n---\nДархост тавассути SONI STORE фиристода шуд.`;
-  const url = `https://github.com/${OWNER}/${REPO}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}&labels=${encodeURIComponent("app-request")}`;
-  $("formMessage").textContent = "Ҳоло саҳифаи GitHub кушода мешавад. Барои фиристодани дархост тугмаи Submit new issue-ро пахш кун.";
-  window.open(url, "_blank", "noopener");
-});
-
-$("statusForm").addEventListener("submit", async e => {
-  e.preventDefault();
-  const number = Number($("issueNumber").value);
-  const result = $("statusResult");
-  result.textContent = "Ҳолат санҷида мешавад...";
-  try {
-    const response = await fetch(`${API_BASE}/issues/${number}`, {headers:{"Accept":"application/vnd.github+json"}});
-    if (!response.ok) throw new Error(response.status === 404 ? "Дархост ёфт нашуд. Рақами Issue-ро санҷ." : "Ҳоло санҷидан имкон надорад. Баъдтар кӯшиш кун.");
-    const issue = await response.json();
-    if (issue.pull_request) throw new Error("Ин рақам ба Pull Request тааллуқ дорад, на дархост.");
-    const state = issue.state === "open" ? "Дар баррасӣ" : "Пӯшида / анҷомёфта";
-    result.innerHTML = `<span class="status-pill">${state}</span> <a href="${escapeHtml(issue.html_url)}" target="_blank" rel="noopener">#${issue.number} — ${escapeHtml(issue.title)} ↗</a>`;
-  } catch (error) {
-    result.textContent = error.message;
-  }
-});
-
-$("year").textContent = new Date().getFullYear();
-loadApps();
+window.showDetails = showDetails; window.toggleFavorite = toggleFavorite;
