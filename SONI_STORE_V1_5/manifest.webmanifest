@@ -1,0 +1,19 @@
+{
+  "name": "SONI STORE",
+  "short_name": "SONI STORE",
+  "description": "Мағозаи барномаҳо ва бозиҳои SONI",
+  "lang": "tg",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b0b0d",
+  "theme_color": "#0b0b0d",
+  "icons": [
+    {
+      "src": "assets/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
