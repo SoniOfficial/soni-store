@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="tg">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b0d">
+  <meta name="description" content="SONI STORE — мағозаи барномаҳо ва бозиҳои рақамӣ.">
+  <title>SONI STORE — Download Center</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="SONI STORE home">
+      <img src="assets/logo.svg" alt="" width="42" height="42">
+      <span>SONI <b>STORE</b><small>YOUR DIGITAL WORLD</small></span>
+    </a>
+    <nav class="nav">
+      <a href="#catalog">Барномаҳо</a>
+      <a href="#requests">Дархост</a>
+      <a href="#about">Дар бораи мо</a>
+    </nav>
+    <button class="icon-btn mobile-menu" id="menuToggle" aria-label="Меню">☰</button>
+    <button class="admin-open" id="adminOpen">⚙ Admin</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse"></span> DIGITAL APPLICATION MARKET</div>
+        <h1>Ҷаҳони барномаҳо<br><em>дар як ҷо.</em></h1>
+        <p>Барномаҳо ва бозиҳои интихобшудаи SONI-ро пайдо кунед, маълумоташонро бинед ва бехатар зеркашӣ намоед.</p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#catalog">Дидани барномаҳо <span>↗</span></a>
+          <a class="text-link" href="#requests">Дархости барнома</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong id="statApps">0</strong><span>Барнома</span></div>
+          <div><strong id="statCategories">0</strong><span>Категория</span></div>
+          <div><strong>24/7</strong><span>Дастрасӣ</span></div>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="hero-phone">
+          <div class="phone-camera"></div>
+          <div class="phone-logo"><img src="assets/logo.svg" alt=""></div>
+          <div class="phone-title">SONI STORE</div>
+          <div class="phone-sub">DISCOVER • DOWNLOAD</div>
+          <div class="phone-apps"><i>✦</i><i>◈</i><i>◉</i><i>⌘</i></div>
+          <div class="phone-line"></div>
+        </div>
+        <span class="float-chip chip-a">✦ PREMIUM</span><span class="float-chip chip-b">APK CENTER</span>
+      </div>
+    </section>
+
+    <section class="catalog-section" id="catalog">
+      <div class="section-head">
+        <div><div class="eyebrow">EXPLORE COLLECTION</div><h2>Каталоги <em>барномаҳо</em></h2></div>
+        <span class="result-count" id="resultCount">0 натиҷа</span>
+      </div>
+      <div class="toolbar">
+        <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Ҷустуҷӯи барнома..." autocomplete="off"></label>
+        <select id="sortSelect" aria-label="Ҷобаҷогузорӣ">
+          <option value="featured">Тавсияшуда</option><option value="name">Аз рӯи ном</option><option value="rating">Рейтинги баланд</option><option value="newest">Навтарин</option>
+        </select>
+      </div>
+      <div class="category-row" id="categoryRow"></div>
+      <div class="app-grid" id="appGrid" aria-live="polite"></div>
+      <div class="empty-state hidden" id="emptyState"><div>⌕</div><h3>Ҳеҷ натиҷа ёфт нашуд</h3><p>Калимаи дигарро ҷустуҷӯ кунед ё филтрро иваз намоед.</p></div>
+      <div class="recent-wrap hidden" id="recentWrap"><div class="section-head compact"><h2>Ба наздикӣ дидашуда</h2><button class="subtle-btn" id="clearRecent">Пок кардан</button></div><div class="recent-list" id="recentList"></div></div>
+    </section>
+
+    <section class="request-section" id="requests">
+      <div class="request-card">
+        <div><div class="eyebrow">YOUR IDEA MATTERS</div><h2>Барномаи лозимаро<br><em>пайдо накардед?</em></h2><p>Номи барнома ё бозиро нависед. Дархост дар GitHub Issues кушода мешавад.</p></div>
+        <form id="requestForm" class="request-form">
+          <label>Номи барнома<input id="requestName" required maxlength="90" placeholder="Масалан: SONI MUSIC"></label>
+          <label>Маълумоти иловагӣ<textarea id="requestDetails" rows="3" maxlength="500" placeholder="Кадом барнома ва барои чӣ лозим аст?"></textarea></label>
+          <button class="primary-btn" type="submit">Фиристодани дархост <span>↗</span></button>
+          <small>Барои фиристодан ҳисоби GitHub лозим мешавад.</small>
+        </form>
+      </div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="eyebrow">ABOUT SONI STORE</div><h2>Содда. Зуд. <em>Муфид.</em></h2>
+      <p>SONI STORE маркази барномаҳои рақамӣ мебошад. Пеш аз насб маълумоти ҳар барномаро хонед ва танҳо файлҳои аз манбаи боэътимод гирифташударо истифода баред.</p>
+    </section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="#"><img src="assets/logo.svg" alt="" width="34"><span>SONI <b>STORE</b><small>YOUR DIGITAL WORLD</small></span></a><span>© <span id="year"></span> SONI STORE. Ҳамаи ҳуқуқҳо маҳфузанд.</span><a href="#catalog">Ба боло ↑</a></footer>
+
+  <div class="modal hidden" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+    <div class="modal-backdrop" data-close="detail"></div><article class="modal-panel detail-panel"><button class="close-btn" data-close="detail" aria-label="Пӯшидан">×</button><div id="detailContent"></div></article>
+  </div>
+
+  <div class="modal hidden" id="adminModal" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+    <div class="modal-backdrop" data-close="admin"></div>
+    <article class="modal-panel admin-panel">
+      <button class="close-btn" data-close="admin" aria-label="Пӯшидан">×</button>
+      <div class="eyebrow">STORE MANAGEMENT</div><h2 id="adminTitle">Admin <em>Panel</em></h2>
+      <p class="admin-warning">Ин панели маҳаллӣ аст. Тағйирот аввал дар ҳамин браузер нигоҳ дошта мешавад. Барои нашри умумӣ файли JSON-ро содир карда, ба GitHub бор кунед.</p>
+      <div class="admin-actions"><button class="outline-btn" id="exportBtn">↓ Export apps.json</button><label class="outline-btn file-label">↑ Import JSON<input type="file" id="importFile" accept=".json,application/json"></label><button class="outline-btn danger-outline" id="resetBtn">Барқарор кардани аслӣ</button></div>
+      <form id="appForm" class="admin-form">
+        <input type="hidden" id="editId">
+        <div class="form-grid">
+          <label>Номи барнома *<input id="appName" required maxlength="80"></label>
+          <label>Категория *<input id="appCategory" required maxlength="40" placeholder="Tools, Games..."></label>
+          <label>Версия<input id="appVersion" maxlength="20" placeholder="1.0.0"></label>
+          <label>Ҳаҷм<input id="appSize" maxlength="20" placeholder="25 MB"></label>
+          <label>Истеҳсолкунанда<input id="appDeveloper" maxlength="60"></label>
+          <label>URL-и APK<input id="appDownload" type="url" placeholder="https://..."></label>
+        </div>
+        <label>URL-и нишона<input id="appIcon" type="url" placeholder="https://... ё assets/..."></label>
+        <label>Тавсиф<textarea id="appDescription" rows="3" maxlength="600"></textarea></label>
+        <label>URL-и скриншотҳо (ҳар сатр як URL)<textarea id="appScreenshots" rows="2" placeholder="https://..."></textarea></label>
+        <div class="form-actions"><button class="primary-btn" type="submit" id="saveAppBtn">+ Нигоҳ доштан</button><button class="outline-btn hidden" type="button" id="cancelEdit">Бекор кардан</button></div>
+      </form>
+      <h3 class="admin-list-title">Барномаҳои мавҷуда</h3><div id="adminList" class="admin-list"></div>
+    </article>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
