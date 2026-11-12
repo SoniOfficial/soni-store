@@ -1,0 +1,44 @@
+[
+  {
+    "id": "soni-words",
+    "name": "SONI WORDS",
+    "category": "Education",
+    "version": "1.0.0",
+    "size": "25 MB",
+    "developer": "SoniOfficial",
+    "description": "Барномаи омӯзиши калимаҳо ва забонҳо. Барои зиёд кардани захираи луғат ва машқҳои ҳаррӯза.",
+    "downloadUrl": "",
+    "icon": "",
+    "website": "",
+    "featured": true,
+    "updated": "2026-11-12"
+  },
+  {
+    "id": "soni-english-world",
+    "name": "SONI ENGLISH WORLD",
+    "category": "Education",
+    "version": "1.0.0",
+    "size": "35 MB",
+    "developer": "SoniOfficial",
+    "description": "Ҷаҳони омӯзиши забони англисӣ бо дарсҳо, машқҳо ва таҷрибаи интерактивӣ.",
+    "downloadUrl": "",
+    "icon": "",
+    "website": "",
+    "featured": true,
+    "updated": "2026-11-12"
+  },
+  {
+    "id": "soni-tools",
+    "name": "SONI TOOLS",
+    "category": "Tools",
+    "version": "1.0.0",
+    "size": "18 MB",
+    "developer": "SoniOfficial",
+    "description": "Маҷмӯи абзорҳои муфид барои корҳои ҳаррӯза дар телефон.",
+    "downloadUrl": "",
+    "icon": "",
+    "website": "",
+    "featured": false,
+    "updated": "2026-11-12"
+  }
+]

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="tg">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101014">
+  <meta name="description" content="SONI STORE — мағозаи барномаҳои рақамӣ">
+  <title>SONI STORE — Apps Marketplace</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="SONI STORE Home">
+      <img src="assets/logo.svg" alt="" class="brand-logo">
+      <span>SONI <b>STORE</b><small>YOUR DIGITAL WORLD</small></span>
+    </a>
+    <nav class="top-actions" aria-label="Навигатсия">
+      <button class="nav-btn active" id="homeNav" type="button">Мағоза</button>
+      <button class="nav-btn" id="favoritesNav" type="button">♡ Дӯстдошта <span id="favoriteCount" class="count">0</span></button>
+      <button class="nav-btn admin-nav" id="adminNav" type="button">⚙ Admin</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">WELCOME TO THE FUTURE</span>
+        <h1>Ҳамаи барномаҳо<br><span>дар як ҷо.</span></h1>
+        <p>Барномаҳои дӯстдоштаи худро пайдо кун, маълумоташонро бин ва бо як пахш зеркашӣ намо.</p>
+        <a class="primary-btn hero-btn" href="#catalog">Дидани барномаҳо <span>→</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="app-cube"><span>SONI</span><b>✦</b></div>
+        <span class="float-chip chip-one">APPS</span><span class="float-chip chip-two">APK</span>
+      </div>
+    </section>
+
+    <section class="stats-row" aria-label="Маълумоти мағоза">
+      <div><strong id="totalApps">0</strong><span>Барнома</span></div>
+      <div><strong>24/7</strong><span>Дастрасӣ</span></div>
+      <div><strong>100%</strong><span>Digital</span></div>
+    </section>
+
+    <section class="catalog-section" id="catalog">
+      <div class="section-heading">
+        <div><span class="eyebrow">EXPLORE</span><h2 id="catalogTitle">Каталоги барномаҳо</h2></div>
+        <span class="result-label" id="resultCount">0 натиҷа</span>
+      </div>
+      <div class="toolbar">
+        <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Ҷустуҷӯи барнома..." autocomplete="off"></label>
+        <select id="categoryFilter" aria-label="Категория"><option value="all">Ҳама категорияҳо</option></select>
+        <select id="sortSelect" aria-label="Ҷобаҷогузорӣ">
+          <option value="featured">Пешниҳодшуда</option><option value="name">Аз рӯи ном</option><option value="rating">Рейтинги баланд</option><option value="newest">Навтарин</option>
+        </select>
+      </div>
+      <div id="appsGrid" class="apps-grid" aria-live="polite"></div>
+      <div id="emptyState" class="empty-state hidden"><span>⌕</span><h3>Ҳеҷ барнома ёфт нашуд</h3><p>Калимаи ҷустуҷӯ ё категорияро иваз кун.</p><button id="resetFilters" class="secondary-btn" type="button">Тоза кардани филтрҳо</button></div>
+    </section>
+
+    <section class="request-banner">
+      <div><span class="eyebrow">YOUR IDEA MATTERS</span><h2>Барномаи нав мехоҳӣ?</h2><p>Пешниҳодатро фирист — мо онро мебинем.</p></div>
+      <a id="requestLink" class="primary-btn" href="https://github.com/SoniOfficial/soni-store/issues/new" target="_blank" rel="noopener">Дархост фирист <span>↗</span></a>
+    </section>
+  </main>
+
+  <footer class="footer"><a class="brand footer-brand" href="#"><img src="assets/logo.svg" alt=""><span>SONI <b>STORE</b><small>YOUR DIGITAL WORLD</small></span></a><p>© <span id="year"></span> SONI STORE. Ҳамаи ҳуқуқҳо ҳифз шудаанд.</p><span class="version-tag">V1.3</span></footer>
+
+  <dialog id="detailDialog" class="dialog">
+    <button class="dialog-close" data-close="detailDialog" aria-label="Пӯшидан">×</button>
+    <div id="detailContent"></div>
+  </dialog>
+
+  <dialog id="reviewDialog" class="dialog small-dialog">
+    <button class="dialog-close" data-close="reviewDialog" aria-label="Пӯшидан">×</button>
+    <h2>Баҳо ва шарҳ</h2>
+    <form id="reviewForm">
+      <input type="hidden" id="reviewAppId">
+      <label>Рейтинг</label><select id="reviewRating" required><option value="5">★★★★★ — Аъло</option><option value="4">★★★★☆ — Хуб</option><option value="3">★★★☆☆ — Миёна</option><option value="2">★★☆☆☆ — Бад</option><option value="1">★☆☆☆☆ — Хеле бад</option></select>
+      <label>Номи шумо</label><input id="reviewName" maxlength="30" placeholder="Меҳмон">
+      <label>Шарҳ</label><textarea id="reviewText" rows="4" maxlength="500" placeholder="Назари худро навис..." required></textarea>
+      <button class="primary-btn full-btn" type="submit">Интишори шарҳ</button>
+    </form>
+    <p class="fine-print">Шарҳҳо дар ҳамин браузер нигоҳ дошта мешаванд.</p>
+  </dialog>
+
+  <dialog id="adminDialog" class="dialog admin-dialog">
+    <button class="dialog-close" data-close="adminDialog" aria-label="Пӯшидан">×</button>
+    <div class="admin-heading"><div><span class="eyebrow">CONTROL CENTER</span><h2>Admin Panel</h2><p>Барномаҳо ва каталоги мағозаро идора кун.</p></div><span class="admin-lock">⚙</span></div>
+    <div class="admin-notice"><b>Муҳим:</b> ин панели браузерӣ аст. Барои нашри тағйирот, JSON-ро экспорт карда, файли <code>data/apps.json</code>-ро дар GitHub иваз ва commit/push кун. Парол ё GitHub token дар сайт нигоҳ дошта намешавад.</div>
+    <form id="appForm" class="admin-form">
+      <input type="hidden" id="editAppId">
+      <div class="form-grid">
+        <label>Номи барнома *<input id="appName" required maxlength="60" placeholder="SONI WORDS"></label>
+        <label>ID (англисӣ) *<input id="appId" required pattern="[a-zA-Z0-9_-]+" placeholder="soni-words"></label>
+        <label>Категория *<input id="appCategory" required maxlength="35" placeholder="Education"></label>
+        <label>Версия<input id="appVersion" maxlength="20" placeholder="1.0.0"></label>
+        <label>Андоза<input id="appSize" maxlength="20" placeholder="25 MB"></label>
+        <label>Таҳиягар<input id="appDeveloper" maxlength="50" placeholder="SoniOfficial"></label>
+        <label class="wide">Тавсиф *<textarea id="appDescription" required rows="3" maxlength="500" placeholder="Дар бораи барнома..."></textarea></label>
+        <label class="wide">URL-и APK<input id="appDownload" type="url" placeholder="https://github.com/.../releases/download/.../app.apk"></label>
+        <label class="wide">URL-и тасвир (ихтиёрӣ)<input id="appIcon" type="url" placeholder="https://.../icon.png"></label>
+        <label class="wide">URL-и саҳифа / маълумоти иловагӣ<input id="appWebsite" type="url" placeholder="https://..."></label>
+      </div>
+      <div class="form-actions"><button class="primary-btn" type="submit" id="saveAppBtn">+ Иловаи барнома</button><button class="secondary-btn" type="button" id="clearFormBtn">Тоза кардан</button></div>
+    </form>
+    <div class="admin-tools"><h3>Идоракунии каталог</h3><div class="tool-buttons"><button class="secondary-btn" id="exportBtn" type="button">↓ Export JSON</button><label class="secondary-btn import-label">↑ Import JSON<input id="importInput" type="file" accept=".json,application/json" hidden></label><button class="secondary-btn" id="resetDataBtn" type="button">Барқарор кардани намуна</button></div></div>
+    <div class="admin-list-wrap"><h3>Барномаҳо <span id="adminCount" class="count">0</span></h3><div id="adminList" class="admin-list"></div></div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
